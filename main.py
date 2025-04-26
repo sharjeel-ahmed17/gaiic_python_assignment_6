@@ -13,7 +13,7 @@ class Student :
 
 
 student1 = Student("usman" , 100)
-student1.display()
+# student1.display()
 
 # 2. Using cls
 
@@ -40,5 +40,55 @@ class Car:
         print(f"{self.brands} car has started")
 
 my_car = Car("Toyota")
-print(my_car.brands)
-my_car.start()
+# print(my_car.brands)
+# my_car.start()
+
+# 4. Class Variables and Class Methods
+
+
+class Bank:
+    bank_name = "al-habib-bank"
+
+
+    @classmethod
+    def change_bank_name(cls , name):
+        cls.bank_name = name
+
+customer1 = Bank()
+customer2 = Bank()
+
+# print(customer1.bank_name)
+# print(customer2.bank_name)
+
+# Bank.change_bank_name("meezan bank")
+
+# print(customer1.bank_name)
+# print(customer2.bank_name)
+
+# 5. Static Variables and Static Methods
+
+class MathUtils:
+    
+
+    @staticmethod
+    def add(a , b):
+        return a + b
+    
+# result = MathUtils.add(3, 5)
+# print(result)
+
+# 6. Constructors and Destructors
+
+
+class Logger :
+
+    def __init__(self):
+        print("new object is created")
+    def __del__(self):
+        print(" object is delete")
+
+log = Logger()
+del log
+
+# 7. Access Modifiers: Public, Private, and Protected
+
