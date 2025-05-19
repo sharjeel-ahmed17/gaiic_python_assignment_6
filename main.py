@@ -207,3 +207,93 @@ temp_c = 25
 temp_f = TemperatureConverter.celsius_to_fahrenheit(temp_c)
 # print(f"{temp_c}°C is {temp_f}°F")
 
+# 13
+class Engine:
+    def start(self):
+        return "Engine started"
+
+class Car:
+    def __init__(self, engine):
+        self.engine = engine  # Composition: Car "has-a" Engine
+
+    def start_car(self):
+        return self.engine.start()  # Access Engine's method via Car
+
+# Create an Engine object
+engine = Engine()
+
+# Pass Engine object to Car
+car = Car(engine)
+
+# Start the car
+# print(car.start_car())
+
+#14
+
+class Employee:
+    def __init__(self, name, emp_id):
+        self.name = name
+        self.emp_id = emp_id
+
+    def get_details(self):
+        return f"Employee Name: {self.name}, ID: {self.emp_id}"
+
+class Department:
+    def __init__(self, dept_name, employee):
+        self.dept_name = dept_name
+        self.employee = employee  # Aggregation: holds reference to an existing Employee object
+
+    def show_employee(self):
+        return f"Department: {self.dept_name} | {self.employee.get_details()}"
+
+# Create an Employee object independently
+emp = Employee("Alice", 101)
+
+# Create a Department object that aggregates the Employee
+dept = Department("HR", emp)
+
+# Display information
+# print(dept.show_employee())
+
+# 15
+
+
+class A:
+    def show(self):
+        print("A's show() method")
+
+class B(A):
+    def show(self):
+        print("B's show() method")
+
+class C(A):
+    def show(self):
+        print("C's show() method")
+
+class D(B, C):  # Multiple inheritance
+    pass
+
+# Create object of class D
+d = D()
+d.show()  # Observe MRO
+
+# Print the method resolution order
+# print(D.__mro__)
+
+# 16
+
+# Decorator definition
+def log_function_call(func):
+    def wrapper(*args, **kwargs):
+        print("Function is being called")
+        return func(*args, **kwargs)
+    return wrapper
+
+# Applying the decorator
+@log_function_call
+def say_hello():
+    print("Hello!")
+
+# Call the decorated function
+# say_hello()
+
