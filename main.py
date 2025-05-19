@@ -351,3 +351,63 @@ p = Product(100)
 
 # del p.price       # Delete price
 # print(p.price)  # This will raise AttributeError because _price no longer exists
+
+
+# 19
+
+class Multiplier:
+    def __init__(self, factor):
+        self.factor = factor
+
+    def __call__(self, x):
+        return x * self.factor
+
+# Create an instance with factor 3
+m = Multiplier(3)
+
+# Test if the instance is callable
+# print(callable(m))  # True
+
+# Call the instance like a function
+result = m(10)
+# print(result)       # 30
+
+
+# 20
+# Define custom exception
+class InvalidAgeError(Exception):
+    pass
+
+# Function that checks age
+def check_age(age):
+    if age < 18:
+        raise InvalidAgeError("Age must be at least 18")
+    else:
+        print("Age is valid.")
+
+# Using try...except to handle the exception
+# try:
+#     check_age(16)
+# except InvalidAgeError as e:
+#     print(f"Caught an error: {e}")
+ 
+#21
+class Countdown:
+    def __init__(self, start):
+        self.current = start
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current < 0:
+            raise StopIteration
+        else:
+            value = self.current
+            self.current -= 1
+            return value
+
+# Example usage
+for number in Countdown(5):
+    print(number)
+
