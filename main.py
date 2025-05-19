@@ -275,7 +275,7 @@ class D(B, C):  # Multiple inheritance
 
 # Create object of class D
 d = D()
-d.show()  # Observe MRO
+# d.show()  # Observe MRO
 
 # Print the method resolution order
 # print(D.__mro__)
@@ -297,3 +297,57 @@ def say_hello():
 # Call the decorated function
 # say_hello()
 
+
+# 17
+
+# Class decorator definition
+def add_greeting(cls):
+    def greet(self):
+        return "Hello from Decorator!"
+    cls.greet = greet
+    return cls
+
+# Apply decorator to Person class
+@add_greeting
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+# Usage
+p = Person("Alice")
+# print(p.greet())
+
+
+# 18
+
+class Product:
+    def __init__(self, price):
+        self._price = price  # Private attribute by convention
+
+    @property
+    def price(self):
+        """Get the price"""
+        return self._price
+
+    @price.setter
+    def price(self, value):
+        """Set the price, with validation"""
+        if value < 0:
+            raise ValueError("Price cannot be negative")
+        self._price = value
+
+    @price.deleter
+    def price(self):
+        """Delete the price"""
+        print("Deleting price...")
+        del self._price
+
+# Example usage
+p = Product(100)
+# print(p.price)    # Get price
+
+# p.price = 150     # Set price
+# print(p.price)
+
+# del p.price       # Delete price
+# print(p.price)  # This will raise AttributeError because _price no longer exists
